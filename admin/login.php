@@ -96,12 +96,12 @@ function test_input($data) {
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link active" href="index.php">HOME</a></li>
+                    <!--<li class="nav-item"><a class="nav-link active" href="index.php">HOME</a></li>
                     <li class="nav-item"><a class="nav-link" href="about.php">ABOUT US</a></li>
                     <li class="nav-item"><a class="nav-link" href="#cars">CARS</a></li>
                     <li class="nav-item"><a class="nav-link" href="login.php">LOGIN</a></li>
                     <li class="nav-item"><a class="nav-link" href="register.php">REGISTER</a></li>
-                    <li class="nav-item"><a class="nav-link" href="mailto:oniyeabdullahi00@gmail.com">CONTACT US</a></li>
+                    <li class="nav-item"><a class="nav-link" href="mailto:oniyeabdullahi00@gmail.com">CONTACT US</a></li> -->
                 </ul>
             </div>
         </div>
@@ -145,8 +145,8 @@ function test_input($data) {
     <input class="form-control" type="password" name="passwords" placeholder="Enter Your Password"><br>
     </div>
 
-    <button class="btn btn-primary">LOGIN</button>
-    <p class="mt-4">If you have not registered before kindly <a class="text-danger" href="register.html">REGISTER</a></p>
+    <button class="btn btn-primary mb-4">LOGIN</button>
+    <!--<p class="mt-4">If you have not registered before kindly <a class="text-danger" href="register.html">REGISTER</a></p> -->
 
     <span class="text-danger"><?php echo $usernamesErr; ?></span>
 <span class="text-danger"><?php echo $passwordErr; ?></span>
@@ -163,8 +163,8 @@ function test_input($data) {
             <h2 class="display-5 fw-bold mb-4">Ready to Experience Premium Car Rental?</h2>
             <p class="lead mb-5">Join thousands of satisfied customers who trust Young Shabz Rentals for their transportation needs.</p>
             <div class="d-flex justify-content-center gap-3">
-                <a href="register.php" class="btn btn-light btn-lg px-4">Register Now</a>
-                <a href="contact.php" class="btn btn-outline-light btn-lg px-4">Contact Us</a>
+                <!--<a href="register.php" class="btn btn-light btn-lg px-4">Register Now</a>
+                <a href="contact.php" class="btn btn-outline-light btn-lg px-4">Contact Us</a> -->
             </div>
         </div>
     </section>
@@ -185,7 +185,7 @@ function test_input($data) {
                         <a href="#" class="text-white"><i class="fab fa-youtube"></i></a>
                     </div>
                 </div>
-                <p class="col-lg-12">&#169; All Rights Reserved: Young Shabz Rentals 2025 / Developed by: fruitfulcode</p>
+                <p class="col-lg-12">&#169; All Rights Reserved: Young Shabz Rentals 2025 / Developed by: FARUQ MUHAMMED COMPUTER SCIENCE DEPARTMENT</p>
             </div>
         </div>
     </footer>

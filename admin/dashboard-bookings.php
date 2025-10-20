@@ -1,13 +1,31 @@
 <?php
 include ("cookie.php");
 ?>
+
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "shaaba_car_rentals";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
+}
+
+$sql = "SELECT id, user_name, car_destination, car_name, car_color, starting_date, ending_date, nin FROM `bookings` ";
+$result = $conn->query($sql);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>YOUNG SHABZ RENTALS</title>
-    <link rel="stylesheet" href="../home-pages/style.css">
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
@@ -17,18 +35,20 @@ include ("cookie.php");
     <script src="https://kit.fontawesome.com/c5355fa9b1.js" crossorigin="anonymous"></script> 
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script> 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="dashboard.js"></script>
 </head>
 <body>
-    <div class="row">
+    <div class="flex">
         <!--Dashboard List-->
-        <div class="col-md-2 dashboard bg-black p-2">
+        <div id="dashboard" class="dashboard bg-black p-2">
         <div class="list">
             <h4 class="p-3 text-white">SHABZ RENTALS</h4>
             <li class="p-2 m-2"><a href="../admin/dashboard.php"><i class="fa-solid fa-table mx-2"></i> Dashbaord</a></li>
             <li class="p-2 m-2"><a href="../admin/dashboard-driver.php"><i class="fa-solid fa-id-card mx-2"></i> Drivers</a></li>
+            <li class="p-2 m-2"><a href="../admin/dashboard-car.php"><i class="fa-solid fa-id-card mx-2"></i> Cars</a></li>
             <li class="p-2 m-2"><a href="../admin/dashboard-bookings.php"><i class="fa-solid fa-book mx-2"></i> Bookings</a></li>
-            <li class="p-2 m-2"><a href="../admin/dashboard-users.php"><i class="fa-solid fa-user-secret mx-2"></i> Users</a></li>
-            <li class="p-2 mt-2 ml-2"><a href="../admin/dashboard-settings.php"><i class="fa-solid fa-screwdriver-wrench mx-2"></i> Settings</a></li>
+           <!-- <li class="p-2 m-2"><a href="../admin/dashboard-users.php"><i class="fa-solid fa-user-secret mx-2"></i> Users</a></li> -->
+           <li class="p-2 mt-2 ml-2"><a href="../admin/dashboard-settings.php"><i class="fa-solid fa-screwdriver-wrench mx-2"></i> Settings</a></li>
             <hr class="line">
             <li class="p-2 mt-2 ml-2"><a href="../admin/dashboard-payment-details.php"><i class="fa-solid fa-money-check-dollar mx-2"></i> Payments</a></li>
             <li class="p-2 m-2"><a href="../admin/dashboard-transactions.php"><i class="fa-solid fa-cart-shopping mx-2"></i> Transactions</a></li>
@@ -44,112 +64,56 @@ include ("cookie.php");
     
 
           <!--Last List-->
-        <div class="col-md-10 text-bg-light p-3 last">
-                <div class="bg-white focus-ring border rounded-4 p-3 mt-2 mb-2" style="overflow: scroll;">
+        <div class="text-bg-light p-3 last main-content">
+                  <button id="toggleDashboard" class="btn btn-dark m-2"><i class="fa fa-bars"></i></button>
                     <div class="d-flex space">
                     <h6>Recent Bookings</h6>
                     <div class="d-flex space">
-                        <h6 class="p-2"><i class="fa-solid fa-filter"></i> Filter</h6>
-                        <h6 class="ml-4 p-2 text-white bg-primary"> <i class="fa-solid fa-download"></i> Export</h6>
+                        <!-- <h6 class="p-2"><i class="fa-solid fa-filter"></i> Filter</h6>
+                        <h6 class="ml-4 p-2 text-white bg-primary"> <i class="fa-solid fa-download"></i> Export</h6> -->
                     </div>
                     </div>
 
                     <table class="table table-hover">
                         <thead>
                           <tr>
-                            <th scope="col">No</th>
-                            <th scope="col">Booking ID</th>
-                            <th scope="col">Customer Name</th>
-                            <th scope="col">Pick-up & Drop-off</th>
-                            <th scope="col">Date & Time</th>
-                            <th scope="col">Status</th>
+                            <th scope="col">ID No</th>
+                            <th scope="col">Username</th>
+                            <th scope="col">Car Destination</th>
+                            <th scope="col">Car Name</th>
+                            <th scope="col">Car Color</th>
+                            <th scope="col">Rent Date</th>
+                            <th scope="col">Return Date</th>
+                            <th scope="col">Nin Path</th>
                           </tr>
                         </thead>
                         <tbody>
-                          <tr>
-                            <td>01</td>
-                            <td>#uwuiei3737</td>
-                            <td>FAruq Muhammed</td>
-                            <td>Kparumogi - Kusogi</td>
-                            <td>2 April, 2025 8:20AM </td>
-                            <td><button class="btn btn-outline-success">Confirmed</button></td>
-                            
-                          </tr>
-
-                          <tr>
-                            <td>02</td>
-                            <td>#uwuiei3737</td>
-                            <td>FAruq Muhammed</td>
-                            <td>Kparumogi - Kusogi</td>
-                            <td>2 April, 2025 8:20AM </td>
-                            <td><button class="btn btn-outline-success">Confirmed</button></td>
-                            
-                          </tr>
-
-                          <tr>
-                            <td>03</td>
-                            <td>#uwuiei3737</td>
-                            <td>FAruq Muhammed</td>
-                            <td>Kparumogi - Kusogi</td>
-                            <td>2 April, 2025 8:20AM </td>
-                            <td><button class="btn btn-outline-success">Confirmed</button></td>
-                            
-                          </tr>
-
-                          <tr>
-                            <td>04</td>
-                            <td>#uwuiei3737</td>
-                            <td>FAruq Muhammed</td>
-                            <td>Kparumogi - Kusogi</td>
-                            <td>2 April, 2025 8:20AM </td>
-                            <td><button class="btn btn-outline-success">Confirmed</button></td>
-                            </tr>
-
-                          <tr>
-                            <td>05</td>
-                            <td>#uwuiei3737</td>
-                            <td>FAruq Muhammed</td>
-                            <td>Kparumogi - Kusogi</td>
-                            <td>2 April, 2025 8:20AM </td>
-                            <td><button class="btn btn-outline-success">Confirmed</button></td>
-                             </tr>
-
-                          <tr>
-                            <td>06</td>
-                            <td>#uwuiei3737</td>
-                            <td>FAruq Muhammed</td>
-                            <td>Kparumogi - Kusogi</td>
-                            <td>2 April, 2025 8:20AM </td>
-                            <td><button class="btn btn-outline-success">Confirmed</button></td>
-                            </tr>
-
-                          <tr>
-                            <td>07</td>
-                            <td>#uwuiei3737</td>
-                            <td>FAruq Muhammed</td>
-                            <td>Kparumogi - Kusogi</td>
-                            <td>2 April, 2025 8:20AM </td>
-                            <td><button class="btn btn-outline-success">Confirmed</button></td>
-                            </tr>
-
-                          <tr>
-                            <td>08</td>
-                            <td>#uwuiei3737</td>
-                            <td>FAruq Muhammed</td>
-                            <td>Kparumogi - Kusogi</td>
-                            <td>2 April, 2025 8:20AM </td>
-                            <td><button class="btn btn-outline-success">Confirmed</button></td>
-                            </tr>
-
-                          <tr>
-                            <td>09</td>
-                            <td>#uwuiei3737</td>
-                            <td>FAruq Muhammed</td>
-                            <td>Kparumogi - Kusogi</td>
-                            <td>2 April, 2025 8:20AM </td>
-                            <td><button class="btn btn-outline-success">Confirmed</button></td>
-                            </tr>
-                        </tbody>
+    <?php
+    if ($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+            echo "<tr>";
+            echo "<td>" . $row["id"]. "</td>";
+            echo "<td>" . $row["user_name"]. "</td>";
+            echo "<td>" . $row["car_destination"]. "</td>";
+            echo "<td>" . $row["car_name"]. "</td>";
+            echo "<td>" . $row["car_color"]. "</td>";
+            echo "<td>" . $row["starting_date"]. "</td>";
+            echo "<td>" . $row["ending_date"]. "</td>";
+            echo "<td>" . $row["nin"]. "</td>";
+           // echo "<td>";
+//if (!empty($row["car_images"])) {
+  //  echo '<td><img src="' . htmlspecialchars($row["car_images"]) . '" alt="Car Image" style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover;"></td>';
+//} else {
+  //  echo "No Image";
+//}
+//echo "</td>";
+            echo "</tr>";
+        }
+    } else {
+        echo "<tr><td colspan='7'>No users found</td></tr>";
+    }
+    ?>
+</tbody>
                       </table>
 
                       

@@ -6,4 +6,3 @@ document.addEventListener('DOMContentLoaded', function() {
     mobileNavToggle.addEventListener('click', function() {
         navMenu.classList.toggle('show');
     });
-

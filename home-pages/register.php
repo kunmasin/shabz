@@ -1,5 +1,6 @@
 <?php
-$fullName = $usernames = $passwords = $email = $address = $phoneNumber = " ";
+$fullName = $usernames = $passwords = $email = $address = $phoneNumber = $images = $target_file="";
+$uploadOk = 1;
 
 if($_SERVER["REQUEST_METHOD"] === "POST"){
     $fullName = test_input($_POST["fullName"]);
@@ -8,15 +9,62 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
     $email = test_input($_POST["email"]);
     $address = test_input($_POST["address"]);
     $phoneNumber = test_input($_POST["phoneNumber"]);
+}// Image Upload
+if (isset($_FILES["images"]) && $_FILES["images"]["error"] == 0) {
+    $target_dir = "images/";
+    $image_name = time() . '_' . basename($_FILES["images"]["name"]);
+    $target_file = $target_dir . $image_name;
+    $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+    $maxFileSize = 5000000; // 5MB
+
+    $check = getimagesize($_FILES["images"]["tmp_name"]);
+    if ($check === false) {
+        $imageErr = "File is not an image.";
+        $uploadOk = 0;
+    }
+
+    if ($_FILES["images"]["size"] > $maxFileSize) {
+        $imageErr = "Sorry, your file is too large.";
+        $uploadOk = 0;
+    }
+
+    if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif") {
+        $imageErr = "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+        $uploadOk = 0;
+    }
+
+    if ($uploadOk == 1) {
+        if (move_uploaded_file($_FILES["images"]["tmp_name"], $target_file)) {
+            $image = $target_file; // Store the file path for database insertion.
+        } else {
+            $imageErr = "Sorry, there was an error uploading your file.";
+        }
+    }
+} else {
+    $imageErr = "Please upload an image.";
 }
 
+// Database Insertion (Example - you'll need to adapt this)
+if (empty($namesErr) && empty($emailErr) && empty($passwordErr) && empty($lvl_admittedErr) && empty($dobErr) && empty($matric_noErr) && empty($courseErr) && empty($facultyErr) && empty($genderErr) && empty($phoneNumberErr) && empty($imageErr)) {
+    // Database connection and insertion logic here
+    // Example (using PDO):
+    /*
+    $pdo = new PDO("mysql:host=localhost;dbname=your_database", "your_user", "your_password");
+    $stmt = $pdo->prepare("INSERT INTO users (names, email, password, level, dob, matric, course, faculty, gender, phone, image) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt->execute([$names, $email, $hashedPassword, $lvl_admitted, $dob, $matric_no, $course, $faculty, $gender, $phoneNumber, $image]);
+    echo "Registration successful!";
+    */
+}
+
+
 function test_input($data) {
-    $data = trim($data);
-    $data = stripslashes($data);
-    $data = htmlspecialchars($data);
-    return $data;
-  }
+$data = trim($data);
+$data = stripslashes($data);
+$data = htmlspecialchars($data);
+return $data;
+}
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -46,11 +94,11 @@ function test_input($data) {
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link active" href="../home-pages/index.php">HOME</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../home-pages/about.php">ABOUT US</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="index.php">HOME</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.php">ABOUT US</a></li>
                     <li class="nav-item"><a class="nav-link" href="#cars">CARS</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../home-pages/login.php">LOGIN</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../home-pages/register.php">REGISTER</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../users/login.php">LOGIN</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../users/register.php">REGISTER</a></li>
                     <li class="nav-item"><a class="nav-link" href="mailto:oniyeabdullahi00@gmail.com">CONTACT US</a></li>
                 </ul>
             </div>
@@ -85,7 +133,7 @@ function test_input($data) {
 <h1 class="font-weight-bold"> REGISTERATION PAGE </h1>
 </div>
 
-<form method="post" class="container" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+<form method="post" class="container" enctype="multipart/form-data" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
     <div class="">
         <label for="">Full Name:</label><br>
         <input class="form-control" type="text" name="fullName" placeholder="Enter Your Fullname"><br>
@@ -106,6 +154,11 @@ function test_input($data) {
         <input class="form-control" type="email" name="email" placeholder="Enter Your Email-Address"><br>
     </div>
 
+    <div class="">
+        <label for="">Click to Insert Your Profile Image</label>
+        <input type="file" class="form-control" name="images" placeholder="Upload Your Image"><br>
+    </div>
+
     <div>
         <label for="">Address:</label><br>
         <input class="form-control" type="text" name="address" placeholder="Enter Your Address"><br>
@@ -117,7 +170,7 @@ function test_input($data) {
     </div>
 
     <button class="btn btn-primary mx-2">REGISTER</button>
-    <p class="mt-4">If you have registered already kindly <a class="text-danger" href="login.html">LOGIN</a></p>
+    <p class="mt-4">If you have registered already kindly <a class="text-danger" href="../users/login.php">LOGIN</a></p>
 
 </form>
 
@@ -130,7 +183,7 @@ function test_input($data) {
             <h2 class="display-5 fw-bold mb-4">Ready to Experience Premium Car Rental?</h2>
             <p class="lead mb-5">Join thousands of satisfied customers who trust Young Shabz Rentals for their transportation needs.</p>
             <div class="d-flex justify-content-center gap-3">
-                <a href="register.php" class="btn btn-light btn-lg px-4">Register Now</a>
+                <a href="../users/register.php" class="btn btn-light btn-lg px-4">Register Now</a>
                 <a href="mailto:oniyeabdullahi00@gmail.com" class="btn btn-outline-light btn-lg px-4">Contact Us</a>
             </div>
         </div>
@@ -152,7 +205,7 @@ function test_input($data) {
                         <a href="#" class="text-white"><i class="fab fa-youtube"></i></a>
                     </div>
                 </div>
-                <p class="col-lg-12">&#169; All Rights Reserved: Young Shabz Rentals 2025 / Developed by: fruitfulcode</p>
+                <p class="col-lg-12">&#169; All Rights Reserved: Young Shabz Rentals 2025 / Developed by: FARUQ MUHAMMED COMPUTER SCIENCE DEPARTMENT</p>
             </div>
         </div>
     </footer>

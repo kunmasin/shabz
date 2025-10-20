@@ -99,8 +99,8 @@ function test_input($data) {
                     <li class="nav-item"><a class="nav-link active" href="../home-pages/index.php">HOME</a></li>
                     <li class="nav-item"><a class="nav-link" href="../home-pages/about.php">ABOUT US</a></li>
                     <li class="nav-item"><a class="nav-link" href="#cars">CARS</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../home-pages/login.php">LOGIN</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../home-pages/register.php">REGISTER</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../users/login.php">LOGIN</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../users/register.php">REGISTER</a></li>
                     <li class="nav-item"><a class="nav-link" href="mailto:oniyeabdullahi00@gmail.com">CONTACT US</a></li>
                 </ul>
             </div>
@@ -148,7 +148,7 @@ function test_input($data) {
     </div>
 
     <button class="btn btn-primary">LOGIN</button>
-    <p class="mt-4">If you have not registered before kindly <a class="text-danger" href="register.html">REGISTER</a></p>
+    <p class="mt-4">If you have not registered before kindly <a class="text-danger" href="../users/register.php">REGISTER</a></p>
 
     <span class="text-danger"><?php echo $usernamesErr; ?></span>
 <span class="text-danger"><?php echo $passwordErr; ?></span>
@@ -165,7 +165,7 @@ function test_input($data) {
             <h2 class="display-5 fw-bold mb-4">Ready to Experience Premium Car Rental?</h2>
             <p class="lead mb-5">Join thousands of satisfied customers who trust Young Shabz Rentals for their transportation needs.</p>
             <div class="d-flex justify-content-center gap-3">
-                <a href="register.php" class="btn btn-light btn-lg px-4">Register Now</a>
+                <a href="../users/register.php" class="btn btn-light btn-lg px-4">Register Now</a>
                 <a href="contact.php" class="btn btn-outline-light btn-lg px-4">Contact Us</a>
             </div>
         </div>
@@ -187,7 +187,7 @@ function test_input($data) {
                         <a href="#" class="text-white"><i class="fab fa-youtube"></i></a>
                     </div>
                 </div>
-                <p class="col-lg-12">&#169; All Rights Reserved: Young Shabz Rentals 2025 / Developed by: fruitfulcode</p>
+                <p class="col-lg-12">&#169; All Rights Reserved: Young Shabz Rentals 2025 / Developed by: FARUQ MUHAMMED COMPUTER SCIENCE DEPARTMENT</p>
             </div>
         </div>
     </footer>

@@ -14,6 +14,8 @@
     <script src="https://kit.fontawesome.com/c5355fa9b1.js" crossorigin="anonymous"></script> 
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script> 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script async src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"></script>
+
 </head>
 <body>
     <!-- Navigation -->
@@ -30,8 +32,8 @@
                     <li class="nav-item"><a class="nav-link active" href="../home-pages/index.php">HOME</a></li>
                     <li class="nav-item"><a class="nav-link" href="#about-us">ABOUT US</a></li>
                     <li class="nav-item"><a class="nav-link" href="#cars">CARS</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../home-pages/login.php">LOGIN</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../home-pages/register.php">REGISTER</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../users/login.php">LOGIN</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../users/register.php">REGISTER</a></li>
                     <li class="nav-item"><a class="nav-link" href="mailto:oniyeabdullahi00@gmail.com">CONTACT US</a></li>
                 </ul>
             </div>
@@ -343,7 +345,7 @@
                                 </div>
                             </div>
                             
-                            <button class="btn btn-outline-primary w-100">
+                            <button class="btn btn-outline-primary w-100"> 
                                 Book Now <i class="fas fa-arrow-right ms-2"></i>
                             </button>
                         </div>
@@ -606,7 +608,7 @@
                             <img src="../imgs/news01.webp" class="card-img-top" alt="Car News" loading="lazy">
                             <div class="date-badge bg-primary text-white p-2">
                                 <span>24</span>
-                                <small>MAR</small>
+                                <small>JULY</small>
                             </div>
                         </div>
                         <div class="card-body">
@@ -632,7 +634,7 @@
                             <img src="../imgs/news02.webp" class="card-img-top" alt="Rental Tips" loading="lazy">
                             <div class="date-badge bg-primary text-white p-2">
                                 <span>15</span>
-                                <small>MAR</small>
+                                <small>JUNE</small>
                             </div>
                         </div>
                         <div class="card-body">
@@ -658,7 +660,7 @@
                             <img src="../imgs/news03.webp" class="card-img-top" alt="Electric Cars" loading="lazy">
                             <div class="date-badge bg-primary text-white p-2">
                                 <span>05</span>
-                                <small>MAR</small>
+                                <small>MAY</small>
                             </div>
                         </div>
                         <div class="card-body">
@@ -688,13 +690,15 @@
             <h2 class="display-5 fw-bold mb-4">Ready to Experience Premium Car Rental?</h2>
             <p class="lead mb-5">Join thousands of satisfied customers who trust Young Shabz Rentals for their transportation needs.</p>
             <div class="d-flex justify-content-center gap-3">
-                <a href="register.php" class="btn btn-light btn-lg px-4">Register Now</a>
+                <a href="../users/register.php" class="btn btn-light btn-lg px-4">Register Now</a>
                 <a href="mailto:oniyeabdullahi00@gmail.com" class="btn btn-outline-light btn-lg px-4">Contact Us</a>
             </div>
         </div>
     </section>
     <!--End of CTA Section -->
-
+    <!--Map-->
+    <div id="map" style="height: 400px; width: 100%;"></div>
+    <!-- end of map -->
 
     <!-- Footer -->
     <footer class="bg-white text-white pt-5">
@@ -710,10 +714,25 @@
                         <a href="#" class="text-white"><i class="fab fa-youtube"></i></a>
                     </div>
                 </div>
-                <p class="col-lg-12">&#169; All Rights Reserved: Young Shabz Rentals 2025 / Developed by: fruitfulcode</p>
+                <p class="col-lg-12">&#169; All Rights Reserved: Young Shabz Rentals 2025 / Developed by: FARUQ MUHAMMED COMPUTER SCIENCE DEPARTMENT</p>
             </div>
         </div>
     </footer>
     <!--Footer-->
+
+    <script>
+        function initMap() {
+            const location = { lat: 6.5244, lng: 3.3792 }; // Example: Lagos, Nigeria
+            const map = new google.maps.Map(document.getElementById("map"), {
+            zoom: 10,
+            center: location,
+            });
+            const marker = new google.maps.Marker({
+            position: location,
+            map: map,
+            });
+        }
+</script>
+
 </body>
 </html>

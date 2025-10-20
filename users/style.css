@@ -1,0 +1,368 @@
+body{
+    background-color: white;
+    width: 100%;
+    height: 100vh;
+}
+.space{
+    justify-content: space-between;
+}
+
+
+.option-middle li{
+    border: none;
+    background-color: rgba(255, 255, 255, 0);
+    list-style-type: none;
+    padding: 20px;
+    margin-top: 10px;
+}
+
+.option-middle select{
+    border: none;
+    margin-top: 10px;
+    outline: none;
+}
+
+.option-middle select:hover{
+    color: red;
+}
+
+.about-link li{
+    list-style-type: none;
+    margin-right: 50px;
+    margin-left: -30px;
+    margin-top: 20px;
+}
+
+.option-middle a{
+    text-decoration: none;
+    color: black;
+}
+
+.option-middle a:hover{
+    text-decoration: none;
+    color: red;
+}
+
+.logo img{
+    width: 100px;
+}
+
+.car-background {
+    background: 
+        linear-gradient(to right,rgba(25, 30, 40, 0.7),rgba(20, 30, 40, 0.6) ), url("lambo.webp"); 
+    background-size: cover;            /* Changed from 100% 90vh */
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 90vh;                     /* Viewport height */
+    padding: 15%;
+    box-sizing: border-box;           /* Include padding in height */
+    position: relative;               /* For child elements */
+}
+
+.benefits-icon-background{
+    width: 108%;
+    height: 50px;
+    margin-left: -12px;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    border: none;
+    background-color: red;
+    color: white;
+}
+
+.head{
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.448);
+    margin: 4%;
+}
+.small-logo{
+    width: 100px; 
+    height: 40px;
+}
+
+.car-details img{
+    width: 107%;
+    margin-left: -12px;
+    height: 40vh;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.car-details{
+    border: 0.5px solid rgb(183, 179, 179);
+    border-radius: 8px;
+}
+
+.car-details i{
+    font-size: 15px;
+    color: rgb(255, 179, 0);
+}
+
+.car-details button{
+    background-color: whitesmoke;
+    color: black;
+    width: 100%;
+    height: 7vh;
+    border: none;
+    border-radius: 6px;
+    padding: 5px;
+}
+
+.facts{
+    border-radius: 120%;
+    padding: 12px;
+    text-align: center;
+    background-color: rgb(5, 5, 26);
+    color: white;
+    margin: 5px;
+    width: 100%;
+    height: 100%;
+}
+
+.facts i{
+    background-color: white;
+    color: red;
+    padding: 20px;
+    margin-left: 70%;
+    border-radius: 100%;
+}
+
+.facts-background{
+    background-color: red;
+}
+
+.facts p{
+    color: gray;
+}
+
+.testimonials-background{
+    background: url("/shabz/imgs/testimonial-bg-webp");
+    background-size: 100% 1000vh;
+    padding: 20px;
+    background-repeat: no-repeat;
+}
+
+.testimonials{
+    background: linear-gradient(rgb(200, 203, 197,.1), rgb(97, 91, 103,.1)), url("/shabz/imgs/bg-30.png");
+    background-size: 100% 80vh;
+    background-repeat: no-repeat;
+    padding: 20px;
+    margin: 40px;
+    border-radius: 10px;
+}
+
+.testimonials p{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.testimonials img{
+    width: 20%;
+    border: 2px solid red;
+    border-radius: 100%;
+    height: 8vh;
+}
+
+.quote{
+    background-color: rgb(5, 5, 98);
+    padding: 20px;
+    border-radius: 100%;
+    color: white;
+}
+.star i{
+    color: gold;
+}
+
+.news-background1{
+    background: url("/shabz/imgs/news01.webp");
+    border-radius: 8px;
+    background-size: 100% 40vh;
+    height: 40vh;
+    width: 120%;
+}
+
+.news-background2{
+    background: url("/shabz/imgs/news02.webp");
+    border-radius: 8px;
+    background-size: 100% 40vh;
+    height: 40vh;
+    width: 120%;
+}
+
+.news-background3{
+    background: url("/shabz/imgs/news03.webp");
+    border-radius: 8px;
+    background-size: 100% 40vh;
+    height: 40vh;
+    width: 120%;
+}
+
+.news-content{
+    border-radius: 8px;
+    background-color: white;
+    box-shadow: 2px 2px rgb(230, 227, 227);
+    padding: 5px;
+    margin-top: -30px;
+    width: 110%;
+    margin-left: 10px;
+    margin-right: 20px;
+}
+
+.news-content img{
+    border: 1px solid red;
+    border-radius: 100%;
+    margin-top: -30px;
+}
+
+.news-content i{
+    color: red;
+}
+.news-date{
+    background-color: rgb(11, 11, 105);
+    color: white;
+    padding: 5px;
+    width: 20%;
+    border-top-left-radius: 8px;
+    float: right;
+
+}
+
+
+.popular{
+    border-radius: 6px;
+    border: 1px solid gray;
+    margin: 40px;
+    width: 100%;
+}
+.popular img{
+    width: 45%;
+    height:100%;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+}
+
+.pickup-background{
+    background-color: rgb(216, 211, 211);
+    width: 100%;
+    padding: 20px;
+    border-radius: 20px;
+    border: 6px solid rgba(11,11, 105);
+    color: black;
+}
+
+.pickup-details{
+    margin: 5px;
+    width: 100%;
+    height: 20%;
+}
+
+.pickup-details select{
+    padding: 10px;
+    border-radius: 6px;
+    border: none;
+    background-color: whitesmoke;
+}
+
+.pickup-details input{
+    padding: 10px;
+    border-radius: 6px;
+    border: none;
+    background-color: whitesmoke;
+}
+
+.pickup-details button{
+    margin-top: 16%;
+    padding: 10px;
+    border-radius: 6px;
+    border: none;
+    background-color: rgb(11, 11, 105);
+    color: white;
+}
+
+.socials a{
+    text-decoration: none;
+    color: white;
+}
+
+.dashboard{
+    position: fixed;
+    overflow-y: scroll;
+    z-index: 100;
+}
+.list li{
+    list-style-type: none;
+    color: whitesmoke;
+    padding: 5px;
+}
+
+.list a{
+    text-decoration: none;
+    color: whitesmoke;
+}
+
+.list li:hover{
+    background-color: blue;
+    width: 70%;
+    color: whitesmoke;
+}
+
+.list a:hover{
+    color: whitesmoke;
+    text-decoration: none;
+}
+
+.dashboard h4{
+    color: white;
+}
+.logout{
+    list-style-type: none;
+    list-style: none;
+    color: white;
+}
+.logout a{
+    text-decoration: none;
+    color: white;
+}
+
+.line{
+    color: whitesmoke;
+}
+
+.list i{
+    font-size: 25px;
+}
+
+
+/*
+
+.middle{
+    overflow: scroll;
+}
+.last{
+    overflow: scroll;
+}
+*/
+
+#dashboard {
+    transition: all 0.3s ease;
+    height: 100vh;
+    position: fixed;
+    overflow-y: scroll;
+}
+#dashboard.hidden {
+    margin-left: -220px; /* Hides the sidebar */
+    opacity: 0;
+}
+
+  /* Optional: adjust content width when sidebar is hidden */
+.dashboard-hidden {
+    display: none !important;
+}
+
+.main-content{
+    width: 100%;
+    margin-left: 250px;
+}
+
